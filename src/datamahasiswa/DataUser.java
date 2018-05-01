@@ -6,7 +6,6 @@
 package datamahasiswa;
 
 import datamahasiswa.db.ConnectDB;
-import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author muhtar
  */
-public class DataMahasiswa extends javax.swing.JFrame {
+public class DataUser extends javax.swing.JFrame {
 
     /**
      * Creates new form Login
@@ -31,7 +30,7 @@ public class DataMahasiswa extends javax.swing.JFrame {
     ResultSet resultSet;
     DefaultTableModel tabmode;
 
-    public DataMahasiswa() {
+    public DataUser() {
         initComponents();
         ConnectDB connectDB = new ConnectDB();
         connectDB.config();
@@ -39,32 +38,32 @@ public class DataMahasiswa extends javax.swing.JFrame {
         statement = connectDB.stm;
         dataMhs();
         
-        textFieldNim.setBorder(BorderFactory.createCompoundBorder(
-                textFieldNim.getBorder(),
+        textFieldNip.setBorder(BorderFactory.createCompoundBorder(
+                textFieldNip.getBorder(),
                 BorderFactory.createEmptyBorder(5, 5, 5, 5)));
-        textFieldNama.setBorder(BorderFactory.createCompoundBorder(
-                textFieldNama.getBorder(),
+        textFieldUsername.setBorder(BorderFactory.createCompoundBorder(
+                textFieldUsername.getBorder(),
                 BorderFactory.createEmptyBorder(5, 5, 5, 5)));
-        textFieldNoTelp.setBorder(BorderFactory.createCompoundBorder(
-                textFieldNoTelp.getBorder(),
+        textFieldPassword.setBorder(BorderFactory.createCompoundBorder(
+                textFieldPassword.getBorder(),
                 BorderFactory.createEmptyBorder(5, 5, 5, 5)));
     }
 
     public void dataMhs() {
-        Object[] Baris = {"Nim", "Nama", "Jurusan", "No Telp"};
+        int no = 0;
+        Object[] Baris = {"NIP", "Nama", "Role"};
         tabmode = new DefaultTableModel(null, Baris);
         tabelMhs.setModel(tabmode);
 
-        String sql = "select * from tb_mhs";
+        String sql = "select * from tb_role";
         try {
             Statement stat = connection.createStatement();
             ResultSet hasil = stat.executeQuery(sql);
             while (hasil.next()) {
-                String nim = hasil.getString("npm");
-                String nama = hasil.getString("nama");
-                String jurusan = hasil.getString("jurusan");
-                String telp = hasil.getString("telp");
-                String[] data = {nim, nama, jurusan, telp};
+                String nomor = hasil.getString("id_role");
+                String nama = hasil.getString("nama_user");
+                String jurusan = hasil.getString("tipe_role");
+                String[] data = {nomor, nama, jurusan};
                 tabmode.addRow(data);
             }
         } catch (Exception e) {
@@ -87,17 +86,18 @@ public class DataMahasiswa extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelMhs = new javax.swing.JTable();
-        jLabel3 = new javax.swing.JLabel();
-        textFieldNama = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        textFieldNoTelp = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        textFieldNim = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        comboBoxJurusan = new javax.swing.JComboBox<>();
+        textFieldUsername = new javax.swing.JTextField();
+        comboBoxRole = new javax.swing.JComboBox<>();
         btnSave = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        textFieldNip = new javax.swing.JTextField();
+        textFieldPassword = new javax.swing.JPasswordField();
+        textFieldNama2 = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Log In");
@@ -105,7 +105,6 @@ public class DataMahasiswa extends javax.swing.JFrame {
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 204));
-        jPanel1.setForeground(new java.awt.Color(240, 240, 240));
         jPanel1.setLayout(null);
 
         jPanel2.setBackground(new java.awt.Color(0, 102, 204));
@@ -147,7 +146,7 @@ public class DataMahasiswa extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(250, 250, 250));
-        jLabel1.setText("Data Mahasiswa");
+        jLabel1.setText("Data User");
         jPanel1.add(jLabel1);
         jLabel1.setBounds(300, 0, 140, 40);
 
@@ -172,35 +171,26 @@ public class DataMahasiswa extends javax.swing.JFrame {
         jPanel1.add(jScrollPane1);
         jScrollPane1.setBounds(0, 254, 680, 250);
 
-        jLabel3.setForeground(new java.awt.Color(240, 240, 240));
-        jLabel3.setText("No Telpon");
-        jPanel1.add(jLabel3);
-        jLabel3.setBounds(320, 130, 65, 16);
-        jPanel1.add(textFieldNama);
-        textFieldNama.setBounds(40, 150, 210, 40);
-
         jLabel4.setForeground(new java.awt.Color(240, 240, 240));
-        jLabel4.setText("Jurusan");
+        jLabel4.setText("Tipe Role");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(330, 60, 60, 16);
-        jPanel1.add(textFieldNoTelp);
-        textFieldNoTelp.setBounds(320, 150, 210, 40);
+        jLabel4.setBounds(300, 130, 60, 16);
 
         jLabel5.setForeground(new java.awt.Color(240, 240, 240));
-        jLabel5.setText("Nim");
+        jLabel5.setText("Password");
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(40, 60, 26, 16);
-        jPanel1.add(textFieldNim);
-        textFieldNim.setBounds(40, 80, 210, 40);
+        jLabel5.setBounds(40, 130, 70, 16);
+        jPanel1.add(textFieldUsername);
+        textFieldUsername.setBounds(300, 80, 210, 40);
 
-        jLabel6.setForeground(new java.awt.Color(240, 240, 240));
-        jLabel6.setText("Nama");
-        jPanel1.add(jLabel6);
-        jLabel6.setBounds(40, 130, 50, 16);
-
-        comboBoxJurusan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- Pilih Jurusan -", "Teknik Informatika", "Sistem Informasi", "Teknik Komputer" }));
-        jPanel1.add(comboBoxJurusan);
-        comboBoxJurusan.setBounds(320, 80, 220, 27);
+        comboBoxRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- Pilih Role -", "Admin", "Super Admin" }));
+        comboBoxRole.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxRoleActionPerformed(evt);
+            }
+        });
+        jPanel1.add(comboBoxRole);
+        comboBoxRole.setBounds(300, 150, 220, 27);
 
         btnSave.setBackground(new java.awt.Color(240, 240, 240));
         btnSave.setText("Save");
@@ -222,6 +212,7 @@ public class DataMahasiswa extends javax.swing.JFrame {
         jPanel1.add(btnUpdate);
         btnUpdate.setBounds(120, 200, 88, 29);
 
+        btnDelete.setBackground(new java.awt.Color(240, 240, 240));
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -230,6 +221,22 @@ public class DataMahasiswa extends javax.swing.JFrame {
         });
         jPanel1.add(btnDelete);
         btnDelete.setBounds(210, 200, 84, 29);
+
+        jLabel6.setForeground(new java.awt.Color(240, 240, 240));
+        jLabel6.setText("Username");
+        jPanel1.add(jLabel6);
+        jLabel6.setBounds(300, 60, 70, 16);
+        jPanel1.add(textFieldNip);
+        textFieldNip.setBounds(40, 80, 210, 40);
+        jPanel1.add(textFieldPassword);
+        textFieldPassword.setBounds(40, 150, 210, 40);
+        jPanel1.add(textFieldNama2);
+        textFieldNama2.setBounds(40, 80, 210, 40);
+
+        jLabel7.setForeground(new java.awt.Color(240, 240, 240));
+        jLabel7.setText("NIP");
+        jPanel1.add(jLabel7);
+        jLabel7.setBounds(40, 60, 70, 16);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -247,24 +254,25 @@ public class DataMahasiswa extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     protected void kosong() {
-        textFieldNim.setText("");
-        textFieldNama.setText("");
-        textFieldNoTelp.setText("");
+        textFieldNip.setText("");
+        textFieldUsername.setText("");
+        textFieldPassword.setText("");
+        comboBoxRole.setSelectedItem("- Pilih Role -");
     }
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-        String sql = "insert into tb_mhs values(?,?,?,?)";
+        String sql = "insert into tb_role values(?,?,?,?)";
         try {
             PreparedStatement stat = connection.prepareStatement(sql);
-            stat.setString(1, textFieldNim.getText());
-            stat.setString(2, textFieldNama.getText());
-            stat.setString(3, comboBoxJurusan.getSelectedItem().toString());
-            stat.setString(4, textFieldNoTelp.getText());
+            stat.setString(1, textFieldNip.getText());
+            stat.setString(2, textFieldUsername.getText());
+            stat.setString(3, textFieldPassword.getText());
+            stat.setString(4, comboBoxRole.getSelectedItem().toString());
             stat.executeUpdate();
             JOptionPane.showMessageDialog(null, "Data Berhasil Disimpan");
             kosong();
-            textFieldNim.requestFocus();
+            textFieldUsername.requestFocus();
             dataMhs();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Data Gagal Disimpan " + e);
@@ -278,26 +286,26 @@ public class DataMahasiswa extends javax.swing.JFrame {
         String a = tabmode.getValueAt(bar, 0).toString();
         String b = tabmode.getValueAt(bar, 1).toString();
         String c = tabmode.getValueAt(bar, 2).toString();
-        String d = tabmode.getValueAt(bar, 3).toString();
-        textFieldNim.setText(a);
-        textFieldNama.setText(b);
-        comboBoxJurusan.setSelectedItem(c);
-        textFieldNoTelp.setText(d);
+        textFieldNip.setText(a);
+        textFieldUsername.setText(b);
+        comboBoxRole.setSelectedItem(c);
+        //textFieldNoTelp.setText(d);
     }//GEN-LAST:event_tabelMhsMouseClicked
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
-
-        String sql = "update tb_mhs set nama=?, jurusan=?, telp=? where npm='" + textFieldNim.getText() + "'";
+        tabelMhs.getSelectedRow();
+        String idRole = "id_role";
+        String sql = "update tb_role set nama_user=?, password=?, tipe_role=? where id_role='" + textFieldNip.getText() + "'";
         try {
             PreparedStatement stat = connection.prepareStatement(sql);
-            stat.setString(1, textFieldNama.getText());
-            stat.setString(2, comboBoxJurusan.getSelectedItem().toString());
-            stat.setString(3, textFieldNoTelp.getText());
+            stat.setString(1, textFieldUsername.getText());
+            stat.setString(2, textFieldPassword.getText());
+            stat.setString(3, comboBoxRole.getSelectedItem().toString());
             stat.executeUpdate();
             JOptionPane.showMessageDialog(null, "Data Berhasil Diupdate");
             kosong();
-            textFieldNim.requestFocus();
+            textFieldUsername.requestFocus();
             dataMhs();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Data Gagal Diupdate " + e.getMessage());
@@ -309,13 +317,13 @@ public class DataMahasiswa extends javax.swing.JFrame {
         // TODO add your handling code here:
         int ok = JOptionPane.showConfirmDialog(null, "Apakah anda yakin ingin menghapus data", "Konfirmasi Dialog", JOptionPane.YES_NO_OPTION);
         if (ok == 0) {
-            String sql = "delete from tb_mhs where npm='" + textFieldNim.getText() + "'";
+            String sql = "delete from tb_role where id_role ='" + textFieldNip.getText() + "'";
             try {
                 PreparedStatement stat = connection.prepareStatement(sql);
                 stat.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Data Berhasil Dihapus");
                 kosong();
-                textFieldNim.requestFocus();
+                textFieldUsername.requestFocus();
                 dataMhs();
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, "Data Gagal Dihapus " + e);
@@ -325,10 +333,13 @@ public class DataMahasiswa extends javax.swing.JFrame {
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         // TODO add your handling code here:
-        //new DataMahasiswa().setVisible(false);
-        //new SuperAdminMenu().setVisible(true);
-        dispose();
+        new DataUser().setVisible(false);
+        new SuperAdminMenu().setVisible(true);
     }//GEN-LAST:event_jLabel2MouseClicked
+
+    private void comboBoxRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxRoleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboBoxRoleActionPerformed
 
     /**
      * @param args the command line arguments
@@ -347,14 +358,22 @@ public class DataMahasiswa extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DataMahasiswa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DataUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DataMahasiswa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DataUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DataMahasiswa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DataUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DataMahasiswa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DataUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -367,7 +386,7 @@ public class DataMahasiswa extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DataMahasiswa().setVisible(true);
+                new DataUser().setVisible(true);
             }
         });
     }
@@ -377,19 +396,20 @@ public class DataMahasiswa extends javax.swing.JFrame {
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnUpdate;
-    private javax.swing.JComboBox<String> comboBoxJurusan;
+    private javax.swing.JComboBox<String> comboBoxRole;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabelMhs;
-    private javax.swing.JTextField textFieldNama;
-    private javax.swing.JTextField textFieldNim;
-    private javax.swing.JTextField textFieldNoTelp;
+    private javax.swing.JTextField textFieldNama2;
+    private javax.swing.JTextField textFieldNip;
+    private javax.swing.JPasswordField textFieldPassword;
+    private javax.swing.JTextField textFieldUsername;
     // End of variables declaration//GEN-END:variables
 }

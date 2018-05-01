@@ -6,12 +6,9 @@
 package datamahasiswa;
 
 import datamahasiswa.db.ConnectDB;
-import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import javax.swing.BorderFactory;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -34,8 +31,6 @@ public class SuperAdminMenu extends javax.swing.JFrame {
         connectDB.config();
         connection = connectDB.con;
         statement = connectDB.stm;
-
-        
     }
 
     /**
@@ -53,10 +48,7 @@ public class SuperAdminMenu extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         btnMhs = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        btnUser = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         btnLogout = new javax.swing.JButton();
 
@@ -93,25 +85,15 @@ public class SuperAdminMenu extends javax.swing.JFrame {
         jPanel1.add(jButton4);
         jButton4.setBounds(200, 70, 280, 50);
 
-        jButton5.setForeground(new java.awt.Color(0, 102, 204));
-        jButton5.setText("Data Nilai");
-        jPanel1.add(jButton5);
-        jButton5.setBounds(200, 140, 280, 50);
-
-        jButton6.setForeground(new java.awt.Color(0, 102, 204));
-        jButton6.setText("Data Mahasiswa");
-        jPanel1.add(jButton6);
-        jButton6.setBounds(200, 140, 280, 50);
-
-        jButton7.setForeground(new java.awt.Color(0, 102, 204));
-        jButton7.setText("Data User");
-        jPanel1.add(jButton7);
-        jButton7.setBounds(200, 210, 280, 50);
-
-        jButton8.setForeground(new java.awt.Color(0, 102, 204));
-        jButton8.setText("Data Mahasiswa");
-        jPanel1.add(jButton8);
-        jButton8.setBounds(200, 210, 280, 50);
+        btnUser.setForeground(new java.awt.Color(0, 102, 204));
+        btnUser.setText("Data User");
+        btnUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUserActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnUser);
+        btnUser.setBounds(200, 130, 280, 50);
 
         jPanel2.setBackground(new java.awt.Color(0, 102, 204));
 
@@ -159,7 +141,8 @@ public class SuperAdminMenu extends javax.swing.JFrame {
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         // TODO add your handling code here:
-        new SuperAdminMenu().setVisible(false);
+        //new SuperAdminMenu().setVisible(false);
+        //new DataUser().setVisible(false);
         new Login().setVisible(true);
     }//GEN-LAST:event_btnLogoutActionPerformed
 
@@ -168,6 +151,11 @@ public class SuperAdminMenu extends javax.swing.JFrame {
         new SuperAdminMenu().setVisible(false);
         new DataMahasiswa().setVisible(true);
     }//GEN-LAST:event_btnMhsActionPerformed
+
+    private void btnUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserActionPerformed
+        // TODO add your handling code here:
+        new DataUser().setVisible(true);
+    }//GEN-LAST:event_btnUserActionPerformed
 
     /**
      * @param args the command line arguments
@@ -203,6 +191,7 @@ public class SuperAdminMenu extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new SuperAdminMenu().setVisible(true);
+                new Login().dispose();
             }
         });
     }
@@ -211,11 +200,8 @@ public class SuperAdminMenu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnMhs;
+    private javax.swing.JButton btnUser;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuItem jMenuItem1;

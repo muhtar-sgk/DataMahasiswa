@@ -47,8 +47,22 @@ public class SuperAdminMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
+        btnMhs = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        btnLogout = new javax.swing.JButton();
+
+        jMenu1.setText("jMenu1");
+
+        jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Log In");
@@ -58,9 +72,75 @@ public class SuperAdminMenu extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(0, 102, 204));
         jPanel1.setLayout(null);
 
+        jLabel4.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(240, 240, 240));
         jLabel4.setText("Super Admin Menu");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(290, 210, 120, 50);
+        jLabel4.setBounds(260, 0, 150, 50);
+
+        btnMhs.setForeground(new java.awt.Color(0, 102, 204));
+        btnMhs.setText("Data Mahasiswa");
+        btnMhs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMhsActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnMhs);
+        btnMhs.setBounds(200, 70, 280, 50);
+
+        jButton4.setForeground(new java.awt.Color(0, 102, 204));
+        jButton4.setText("Data Mahasiswa");
+        jPanel1.add(jButton4);
+        jButton4.setBounds(200, 70, 280, 50);
+
+        jButton5.setForeground(new java.awt.Color(0, 102, 204));
+        jButton5.setText("Data Nilai");
+        jPanel1.add(jButton5);
+        jButton5.setBounds(200, 140, 280, 50);
+
+        jButton6.setForeground(new java.awt.Color(0, 102, 204));
+        jButton6.setText("Data Mahasiswa");
+        jPanel1.add(jButton6);
+        jButton6.setBounds(200, 140, 280, 50);
+
+        jButton7.setForeground(new java.awt.Color(0, 102, 204));
+        jButton7.setText("Data User");
+        jPanel1.add(jButton7);
+        jButton7.setBounds(200, 210, 280, 50);
+
+        jButton8.setForeground(new java.awt.Color(0, 102, 204));
+        jButton8.setText("Data Mahasiswa");
+        jPanel1.add(jButton8);
+        jButton8.setBounds(200, 210, 280, 50);
+
+        jPanel2.setBackground(new java.awt.Color(0, 102, 204));
+
+        btnLogout.setBackground(new java.awt.Color(240, 240, 240));
+        btnLogout.setIcon(new javax.swing.ImageIcon("/Users/muhtar/Downloads/logout-1.png")); // NOI18N
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogoutActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(36, Short.MAX_VALUE)
+                .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 23, Short.MAX_VALUE))
+        );
+
+        jPanel1.add(jPanel2);
+        jPanel2.setBounds(590, 0, 90, 60);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -76,6 +156,18 @@ public class SuperAdminMenu extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(673, 501));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        // TODO add your handling code here:
+        new SuperAdminMenu().setVisible(false);
+        new Login().setVisible(true);
+    }//GEN-LAST:event_btnLogoutActionPerformed
+
+    private void btnMhsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMhsActionPerformed
+        // TODO add your handling code here:
+        new SuperAdminMenu().setVisible(false);
+        new DataMahasiswa().setVisible(true);
+    }//GEN-LAST:event_btnMhsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -117,7 +209,17 @@ public class SuperAdminMenu extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLogout;
+    private javax.swing.JButton btnMhs;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }
